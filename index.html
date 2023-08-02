@@ -736,32 +736,32 @@
                                                                 <div
                                                                     class="frame_type_img_cont map_layout_cont select_border">
                                                                     <img src="images/polar.svg" alt="style_none_img1"
-                                                                        id="satellite-v9" aria-current="polar">
+                                                                        id="satellite-v9" aria-current="polar" aria-colindex="1">
                                                                     <div style="font-size:10px;">Polor</div>
                                                                 </div>
                                                                 <div class="frame_type_img_cont map_layout_cont">
                                                                     <img src="images/boxed.svg" alt="style_none_img1"
-                                                                        id="light-v10" aria-current="classic">
+                                                                        id="light-v10" aria-current="classic" aria-colindex="2">
                                                                     <div style="font-size:10px;">Classic</div>
                                                                 </div>
                                                                 <div class="frame_type_img_cont map_layout_cont">
                                                                     <img src="images/halo.svg" alt="style_none_img1"
-                                                                        id="dark-v10" aria-current="halo">
+                                                                        id="dark-v10" aria-current="halo" aria-colindex="3">
                                                                     <div style="font-size:10px;">Halo</div>
                                                                 </div>
                                                                 <div class="frame_type_img_cont map_layout_cont">
                                                                     <img src="images/square.svg" alt="style_none_img1"
-                                                                        id="streets-v11" aria-current="square">
+                                                                        id="streets-v11" aria-current="square" aria-colindex="4">
                                                                     <div style="font-size:10px;">square</div>
                                                                 </div>
                                                                 <div class="frame_type_img_cont map_layout_cont">
                                                                     <img src="images/card.svg" alt="style_none_img1"
-                                                                        id="outdoors-v11" aria-current="card">
+                                                                        id="outdoors-v11" aria-current="card" aria-colindex="5">
                                                                     <div style="font-size:10px;">Card</div>
                                                                 </div>
                                                                 <div class="frame_type_img_cont map_layout_cont">
                                                                     <img src="images/label.svg" alt="style_none_img1"
-                                                                        id="navigation-day-v1" aria-current="architect">
+                                                                        id="navigation-day-v1" aria-current="architect" aria-colindex="6">
                                                                     <div style="font-size:10px;">architect</div>
                                                                 </div>
                                                             </div>
@@ -1257,13 +1257,20 @@
         //     center: [-80.19125409514797, 25.78075907018487],
         //     preserveDrawingBuffer: true
         // });
-        if (window.innerWidth <= 1200 && window.innerWidth > 576) {
-            map.getContainer().style.width = 378 + 'px';
-            map.getContainer().style.height = 583 + 'px';
+        setInterval(()=>{
+
+            if (window.innerWidth <= 1200 && window.innerWidth > 576) {
+                map.getContainer().style.width = 378 + 'px';
+                map.getContainer().style.height = 583 + 'px';
         } else if (window.innerWidth <= 576) {
             map.getContainer().style.width = 309 + 'px';
             map.getContainer().style.height = 476 + 'px';
+        }else if (window.innerWidth > 1200) {
+            map.getContainer().style.width = 483 + 'px';
+            map.getContainer().style.height = 742 + 'px';
+            map.getCanvas().style.height= 550+ 'px';
         }
+    }, 10)
         map.addControl(new watergis.MapboxExportControl({
             PageSize: watergis.Size.A3,
             PageOrientation: watergis.PageOrientation.Portrait,
@@ -1326,45 +1333,7 @@
             selected_layout == 'square' ? squareText() : null
         });
         document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
-        // function setDPI(canvas, dpi) {
-        //     // Set up CSS size.
-        //     // canvas.style.width = canvas.style.width || canvas.width + 'px';
-        //     // canvas.style.height = canvas.style.height || canvas.height + 'px';
-        //     // Get size information.
-        //     var scaleFactor = dpi / 96;
-        //     var width = parseFloat(canvas.width);
-        //     var height = parseFloat(canvas.height);
-        //     // Backup the canvas contents.
-        //     var oldScale = canvas.width / width;
-        //     var backupScale = scaleFactor / oldScale;
-        //     var backup = canvas.cloneNode(false);
-        //     backup.getContext('2d').drawImage(canvas, 0, 0);
-        //     // Resize the canvas.
-        //     var ctx = canvas.getContext('2d');
-        //     canvas.width = Math.ceil(width * scaleFactor);
-        //     canvas.height = Math.ceil(height * scaleFactor);
-        //     // Redraw the canvas image and scale future draws.
-        //     ctx.setTransform(backupScale, 0, 0, backupScale, 0, 0);
-        //     ctx.drawImage(backup, 0, 0);
-        //     ctx.setTransform(scaleFactor, 0, 0, scaleFactor, 0, 0);
-        //     var link = document.createElement('a');
-        //     link.download = 'filename.png';
-        //     link.href = document.getElementById('canvas-total').toDataURL()
-        //     link.click()
-        // }
-        // var imagesLoaded = 0;
-        // var img1, img2 = ''
-        // function download() {
-        //     //         Object.defineProperty(window, 'devicePixelRatio', {
-        //     //     get: function() {return dpi / 300}
-        //     // });
-        //     imagesLoaded = 0;
-        //     Object.defineProperty(window, 'devicePixelRatio', {
-        //         get: function () { return 400 / 96 }
-        //     });
-        //     img1 = loadImage(document.getElementById("imageCanvas").toDataURL("image/png").replace("image/png", "image/octet-stream"), main);
-        //     img2 = loadImage(document.getElementsByClassName("mapboxgl-canvas")[0].toDataURL("image/png").replace("image/png", "image/octet-stream"), main);
-        // }
+      
         function main() {
             imagesLoaded += 1;
             var canvas = document.getElementById("canvas-total");
@@ -1400,6 +1369,7 @@
         })
         let mapstyle;
         let selected_layout = 'polar';
+        let selected_layout_index = '1';
 
         // select_advanced_tab_map_style
         function select_img(e) {
@@ -1547,6 +1517,7 @@
         const maptext = document.querySelector('#map_text')
         selected_layout == 'polar' ? maptext.classList.add('map_over_width') : null
         function map_layout(e) {
+            selected_layout_index=e.target.ariaColIndex;
             selected_layout = e.target.ariaCurrent;
             if (selected_layout == 'polar' || selected_layout == 'halo' || selected_layout == 'classic' || selected_layout == 'card' || selected_layout == 'square' || selected_layout == 'architect') {
                 document.querySelectorAll('.map_layout_cont').forEach((ele) => ele.classList.remove('select_border'))

@@ -691,7 +691,7 @@ canvas.mapboxgl-canvas-new {
 @media screen and (min-height: 660px) and (max-height: 750px) {
     /* #map {
         width: 422px !important;
-        height: 650px !important;
+        
     } */
 
     #imageCanvas {
@@ -699,6 +699,7 @@ canvas.mapboxgl-canvas-new {
     }
 
     canvas.mapboxgl-canvas {
+        
         max-height: 481px;
         margin-left: 18px;
         margin-top: 18px;

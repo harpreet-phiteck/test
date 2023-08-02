@@ -489,50 +489,42 @@ function createPrintMap(
     fadeDuration: 0,
     attributionControl: false,
   });
-
+    let mapData={
+      CityName:$('#headline_input').val(),
+      CountryName:$('#divider_input').val(),
+      Coordinates:$('#tagline_input').val(),
+      DesignLayout:selected_layout_index,
+      MapImg:''
+    }
+  
+  
+  
   const marker_Pos = {};
-  var new_marker = new mapboxgl.Marker().setLngLat([coordinates.lng,coordinates.lat]).addTo(renderMap);
-  console.log(new_marker.getLngLat(coordinates))
-  console.log(renderMap.getBounds())
-  // function customProject(coordinates, renderMap) {
-  //   const lng = coordinates.lng;
-  //   const lat = coordinates.lat;
-  //   const bounds = renderMap.getBounds();
-  
-  //   const x = ((lng - bounds.getWest()) / (bounds.getEast() - bounds.getWest())) * container.getBoundingClientRect().width;
-  //   const y = ((lat - bounds.getSouth()) / (bounds.getNorth() - bounds.getSouth())) * container.getBoundingClientRect().height;
-  
-  //   return { x, y };
-  // }
-  
-  // Set the marker position in the custom container
-  const change_marker = renderMap
-  .getCanvasContainer()
-  .getElementsByClassName("mapboxgl-marker")[0]
-  // const position = customProject(coordinates, renderMap);
-  // console.log(position);
-  // change_marker.style.transform = `translate(-50%, -50%) translate(${position.x}px, ${position.y/2}px)`;
-  change_marker.style.top = `77px`;
-  change_marker.style.left = `-10px`;
+  if(marker_icon!=undefined){
+    var new_marker = new mapboxgl.Marker().setLngLat([coordinates.lng,coordinates.lat]).addTo(renderMap);
+    const change_marker = renderMap
+    .getCanvasContainer()
+    .getElementsByClassName("mapboxgl-marker")[0]
+    change_marker.style.top = `77px`;
+    change_marker.style.left = `-10px`;
+  }
 
   let childPos;
   renderMap.on("load", function (e) {
-    renderMap
+    if(marker_icon!=undefined) {
+      renderMap
       .getCanvasContainer()
       .getElementsByClassName("mapboxgl-marker")[0].innerHTML = marker_icon;
-    const parentPos = renderMap.getContainer().getBoundingClientRect();
-    childPos = renderMap
+      const parentPos = renderMap.getContainer().getBoundingClientRect();
+      childPos = renderMap
       .getCanvasContainer()
       .getElementsByClassName("mapboxgl-marker")[0]
       .getBoundingClientRect();
-
-    marker_Pos.top = childPos.top - parentPos.top + childPos.height / 2
-  
-    console.log(parentPos, childPos);
-    // something like: {top: 50, right: -100, bottom: -50, left: 100}
-    // console.log(renderMap.getContainer());
-    // console.log(renderMap.getCanvas());
-    // console.log(renderMap.getCanvasContainer().getElementsByClassName('mapboxgl-marker')[0].style.transform)
+      
+      marker_Pos.top = childPos.top - parentPos.top + childPos.height / 2
+      console.log(parentPos, childPos);
+    }
+ 
     if (
       land_value == "active" ||
       road_value == "active" ||
@@ -649,41 +641,39 @@ function createPrintMap(
     var jpegFile = renderMap.getCanvas().toDataURL("image/png");
     const new_img = document.createElement("img");
     new_img.src = jpegFile;
-    // document.body.appendChild(img_cont).appendChild(new_img);
+    if(marker_icon==undefined){
+      mapData.MapImg=jpegFile;
+    }
+
     document.querySelector("#new_map").width = renderMap.getCanvas().width;
     document.querySelector("#new_map").height = renderMap.getCanvas().height;
-    // canvas1 = new fabric.Canvas("new_map");
-    const point = renderMap.project(coordinates);
-    console.log(point);
+    let point;
+    if(marker_icon!=undefined) {
+       point = renderMap.project(coordinates);
+      console.log(point);
+    }
 
     new_img.onload = () => {
       var d_canvas = document.getElementById("new_map");
       var context = d_canvas.getContext("2d");
-      // var background = document.getElementById('background');
-
+  
       context.drawImage(new_img, 0, 0);
-      
-      // var imgElement = new_img;
-      // var imgInstance = new fabric.Image(imgElement, {
-      //   left: 0,
-      //   top: 0,
-      //   angle: 0,
-      //   opacity: 1,
-      // });
-      // canvas1.add(imgInstance);
-      let icon_width =   $(".mapboxgl-marker i").width()
-      let icon_height =   $(".mapboxgl-marker i").height()
-      let icon_left = point.x * 3.125;
-      let icon_top = point.y * 3.125;
-      let new_container = $("#map_container");
-      let getfontsize,getcolor = '';
-      new_marker_icon.hasAttribute('style')==false? new_marker_icon.setAttribute('style',`font-size: ${icon_height-(icon_height*0.25)}px`):[
-        getfontsize = Number(new_marker_icon.style.fontSize.slice(0,2)),
-        getcolor = new_marker_icon.style.color,
-        new_marker_icon.style.length==2 ? new_marker_icon.setAttribute('style',`font-size: ${getfontsize-(icon_height*0.25)}px; color: ${getcolor}`):
+      if(marker_icon!=undefined) {
+
+        let icon_width =   $(".mapboxgl-marker i").width()
+        let icon_height =   $(".mapboxgl-marker i").height()
+        let icon_left = point.x * 3.125;
+        let icon_top = point.y * 3.125;
+        let new_container = $("#map_container");
+        let getfontsize,getcolor = '';
+        new_marker_icon.hasAttribute('style')==false? new_marker_icon.setAttribute('style',`font-size: ${icon_height-(icon_height*0.25)}px`):[
+          getfontsize = Number(new_marker_icon.style.fontSize.slice(0,2)),
+          getcolor = new_marker_icon.style.color,
+          new_marker_icon.style.length==2 ? new_marker_icon.setAttribute('style',`font-size: ${getfontsize-(icon_height*0.25)}px; color: ${getcolor}`):
           new_marker_icon.style.fontSize !='' ? new_marker_icon.setAttribute('style',`font-size: ${getfontsize-(icon_height*0.25)}px`):new_marker_icon.style.color !='' ? new_marker_icon.setAttribute('style',`color: ${getcolor}`):null
-      ];
-      html2canvas(new_marker_icon, {backgroundColor: null, width:icon_width, height:icon_height}).then(
+        ];
+      
+        html2canvas(new_marker_icon, {backgroundColor: null, width:icon_width, height:icon_height}).then(
         (new_canvas) => {
           console.log(icon_width);
           // canvas2=new_canvas
@@ -697,26 +687,8 @@ function createPrintMap(
           new_icon_img.onload = () => {
             new_container.append(new_icon_img);
             var ballon = document.getElementById("map_icon");
-            // console.log(width, height);
-            // var imgInstance1 = new fabric.Image(new_icon_img, {
-            //   left: icon_left - icon_width,
-            //   top: width > height ? point.y * 4.125 : icon_top - icon_height,
-            //   angle: 0,
-            //   opacity: 1,
-            // });
-            // canvas1.add(imgInstance1);
-            // console.log(marker_Pos.top*3.2)
-            // });
-            // console.log(icon_left, icon_top);
-            // console.log(renderMap.getContainer());
-            // var canvasMargin = map.getCanvas();
-            // var newstyle = canvasMargin.currentStyle || window.getComputedStyle(canvasMargin);
-            //       newstyle.marginTop.length > 3 ? newstyle = Number(newstyle.marginTop.slice(0,2)):newstyle = icon_height
-            // let icon_height_val =  (map.getContainer().clientHeight-map.getCanvas().clientHeight)-newstyle-(icon_height/1.2);
-            // console.log(newstyle);
-            // context.drawImage(ballon, icon_left-8-(icon_width*2),icon_top+icon_height_val-(icon_height >22 ? icon_height*.3:icon_height*.1));
+        
             if(selected_layout == 'polar'){
-              // icon_height_val =0
               if(window.innerWidth <= 1200 && window.innerWidth > 576){
                 context.drawImage(ballon, icon_left-(icon_width*1.5),icon_top+114-(icon_height >22 ? icon_height*.3:icon_height*.1));
               }else if(window.innerWidth <=576){
@@ -733,7 +705,6 @@ function createPrintMap(
               }else{
                 context.drawImage(ballon, icon_left, icon_top-5-(icon_height*2.9));
               }
-              // icon_height_val =156
             }else{
               if(window.innerWidth <= 576){
                 context.drawImage(ballon, icon_left-8-(icon_height*1.5), icon_top-(icon_height*2.9));
@@ -746,70 +717,13 @@ function createPrintMap(
             var base64 = d_canvas.toDataURL("image/png");
 
             var a = document.createElement("a");
+            mapData.MapImg = base64;
             console.log(base64);
-            // (a.href = base64), (a.target = "_blank");
+     // (a.href = base64), (a.target = "_blank");
             // a.download = "myImage.png";
 
             // document.body.appendChild(a);
             // a.click();
-
-            if (format == "png") {
-              var imageSaver = document.getElementById("lnkDownload");
-              imageSaver.addEventListener("click", saveImage, false);
-              function saveImage(e) {
-                // console.log(e);
-                this.href = canvas1.toDataURL({
-                  format: "png",
-                  quality: 1.0,
-                });
-                this.download = "canvas.png";
-              }
-              // imageSaver.click();
-            }
-            if (format == "pdf") {
-              var pdf = new jsPDF({
-                orientation: width > height ? "l" : "p",
-                unit: unit,
-                format: [width, height],
-                compress: true,
-              });
-
-              pdf.addImage(
-                canvas1.toDataURL("image/png"),
-                "png",
-                0,
-                0,
-                width,
-                height,
-                null,
-                "FAST"
-              );
-
-              var title = map.getStyle().name,
-                subject =
-                  "center: [" +
-                  form.lonInput.value +
-                  ", " +
-                  form.latInput.value +
-                  ", " +
-                  form.zoomInput.value +
-                  "]",
-                attribution =
-                  "(c) " +
-                  (form.styleSelect.value.indexOf("mapbox") >= 0
-                    ? "Mapbox"
-                    : "Stadia Maps") +
-                  ", (c) OpenStreetMap";
-
-              pdf.setProperties({
-                title: title,
-                subject: subject,
-                creator: "Print Maps",
-                author: attribution,
-              });
-
-              pdf.save("map.pdf");
-            }
 
             renderMap.remove();
             hidden.parentNode.removeChild(hidden);
@@ -823,8 +737,10 @@ function createPrintMap(
               .getElementById("generate-btn")
               .classList.remove("disabled");
           };
+        
         }
-      );
+      )};
     };
-  });
+  })
+  console.log(mapData)
 }
