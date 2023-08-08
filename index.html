@@ -1241,12 +1241,6 @@
             reader.readAsDataURL(e.target.files[0]);
 
         }
-        // function convertToImage() {
-        //     window.open(canvas.toDataURL('png'));
-        // }
-        // document.getElementById('download').onclick = function download() {
-        //     convertToImage();
-        // }
 
         mapboxgl.accessToken = 'pk.eyJ1Ijoia2FyYW5nMHlhbCIsImEiOiJja2VlaG42eDUwZnppMnlveXJtcjdvOGtvIn0.KoPWjGAkfBFhFBEuSUinlw';
         let style_ID = 'clia1ewf100wd01pn6l9vgqwd'
@@ -1260,12 +1254,17 @@
         setInterval(()=>{
 
             if (window.innerWidth <= 1200 && window.innerWidth > 576) {
-                map.getContainer().style.width = 378 + 'px';
-                map.getContainer().style.height = 583 + 'px';
-        } else if (window.innerWidth <= 576) {
+                if(selected_layout=='polar'){
+                    map.getContainer().style.width = 378 + 'px';
+                    map.getContainer().style.height = 583 + 'px';
+                }else if(selected_layout=='card'){
+                    // map.getContainer().style.width = 378 + 'px';
+                    // map.getContainer().style.height = 583 + 'px';
+                }
+        } else if (window.innerWidth <= 576 && selected_layout=='polar') {
             map.getContainer().style.width = 309 + 'px';
             map.getContainer().style.height = 476 + 'px';
-        }else if (window.innerWidth > 1200) {
+        }else if (window.innerWidth > 1200 && selected_layout=='polar') {
             map.getContainer().style.width = 483 + 'px';
             map.getContainer().style.height = 742 + 'px';
             map.getCanvas().style.height= 550+ 'px';
