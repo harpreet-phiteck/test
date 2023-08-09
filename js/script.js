@@ -712,13 +712,13 @@ function createPrintMap(
                 context.drawImage(ballon, icon_left-10-(icon_height*2), icon_top-(icon_height*2.9));
               }
             }
-
             var img = context.getImageData(0, 0, 50, 50);
+            
             var base64 = d_canvas.toDataURL("image/png");
 
             var a = document.createElement("a");
-            mapData.MapImg = base64;
-            console.log(base64);
+            mapData.MapImg = base64; 
+            // console.log(img);
      // (a.href = base64), (a.target = "_blank");
             // a.download = "myImage.png";
 

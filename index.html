@@ -847,17 +847,7 @@
             </div>
             <div class="content_cont">
                 <div class="content_wrapper">
-                    <button class="map_print_btn bg-light btn d-none">Print</button>
-                    <!-- <div class="map_poster_cont">
-                        <img src="images/s1_main_img1.png" width="100%" alt="map_img">
-                    </div> -->
-                    <!-- <div class="frame">
-                    <div class="border">
-                        <div class="image"> -->
-                    <!-- <img src="http://images5.fanpop.com/image/photos/30000000/Marilyn-Monroe-marilyn-monroe-30014001-960-1280.jpg" height="350" width="250" alt="" /> -->
-                    <!-- <div id="map"></div> -->
-
-                    <!-- <h1>Overlay text on canvas image and save as base64</h1> -->
+                    <button class="map_print_btn bg-light btn d-none">Print</button>    
                     <div class="page-wrap d-none">
                         <div class="controls">
                             <input class="controls__input" type="file" id="imageLoader" name="imageLoader" />
@@ -869,7 +859,6 @@
                         <div id="canvas-wrap">
                         </div>
                     </div>
-                    <!-- <canvas id="canvasID" width="400" height="400">Canvas not supported</canvas> -->
                     <div id='map' style="width: 483px;height:742px;margin:10px auto;overflow: inherit;">
                         <div class="map_over_text map_over_text_bg_color text_color_dark" id="map_text">
                             <h2 class="px-1">MIAMI</h2>
@@ -877,44 +866,27 @@
                             <p class="px-1">80° 11' 37″ S 25° 46' 27″ E</p>
                         </div>
                         <div id="imageCanvas" class="shadow" width=1056px height=1493px style="color: #fff;">
-                            <!-- <canvas class="mapboxgl-canvas" tabindex="0" aria-label="Map" role="region"
-                                width="768" height="576" style="width: 768px; height: 576px;">
-                                <canvas class="canvas_icon"></canvas>
-                            </canvas> -->
-                            <!-- <canvas id="canvasID"></canvas> -->
                             <img src="https://www.nespresso.com/aaaprogram/build/images/loader.126ca6bc.gif"
                                 width="100%" style="padding-top:18%" alt="" class="content_cont_loader">
                         </div>
                     </div>
                     <div id="menu">
-
                     </div>
-
                     <a id="lnkDownload" href="#" class="display_none">Save image</a>
-
                 </div>
             </div>
         </div>
         <canvas width="3168" height="4479" id="canvas-total" style="display: none;"></canvas>
         <pre id="coordinates" class="coordinates"></pre>
-
         <input type="hidden" id="curLat">
         <input type="hidden" id="curLng">
         <input type="hidden" id="state">
         <a id="download" download="triangle.png" class="d-none">
             <button type="button" onClick="download()">Download</button>
         </a>
-        <!-- </div>end image -->
-        <!-- <div class="text">Stars in Hands</div>
-                    </div>end border-->
-        <!-- </div>end frame -->
         </div>
         </div>
-        <!-- print_map_popup  -->
-        <!--  mobile mock  -->
         <div class="mockup">
-            <!--   mobile botttom nav, it can be any element you want, like a button etc.   -->
-            <!--  main bottom sheet / modal    -->
             <div class="bottom-sheet-wrapper">
                 <div class="backdrop"></div>
                 <div class="bottom-sheet">
@@ -925,15 +897,12 @@
                         <div class="page-header">
                             <h2>Print Maps</h2>
                             <p class="lead">High-resolution maps in the browser, for printing.</p>
-
                         </div>
-
                         <noscript>
                             <div class="alert alert-danger" role="alert">
                                 This site requires JavaScript to function, but it seems to be disabled in your browser.
                             </div>
                         </noscript>
-
                         <form onsubmit="generateMap(); return false;" id="config">
                             <fieldset id="config-fields">
                                 <div class="row">
@@ -988,8 +957,6 @@
                                 </div>
                                 <div class="row">
                                     <div>
-
-
                                         <div>
                                             <div class="form-group pt-2" id="widthGroup">
                                                 <label for="widthInput">Width</label>
@@ -1096,26 +1063,17 @@
                                 <div id="spinner"></div>
                             </div>
                         </div>
-
-
                         <div class="modal-backdrop in" id="modalBackdrop" style="display: none;"></div>
-
                     </div>
-
-
                 </div>
             </div>
         </div>
-
     </section>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
         crossorigin="anonymous"></script>
     <script src="https://js.sentry-cdn.com/9c5feb5b248b49f79a585804c259febc.min.js" crossorigin="anonymous"></script>
     <script src="js/export.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.0/FileSaver.min.js"
-        integrity="sha512-csNcFYJniKjJxRWRV1R7fvnXrycHP6qDR21mgz1ZP55xY5d+aHLfo9/FcGDQLfn2IfngbAHd8LdfsagcCqgTcQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script> -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"
         integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://api.tiles.mapbox.com/mapbox-gl-js/v1.13.0/mapbox-gl.js"></script>
@@ -1133,44 +1091,16 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"
         integrity="sha512-BNaRQnYJYiPSqHHDb58B0yaPfCu+Wgds8Gp/gU33kqBtgNS4tSPHuGibyoeqMV/TJlSKda6FXzoEyYGjTe+vXA=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/1.1.0/fabric.all.min.js"></script> -->
     <script type="text/javascript">
 
         var text_title = "Overlay text";
         var imageLoader = document.getElementById('imageLoader');
         imageLoader.addEventListener('change', handleImage, false);
         var canvas = document.getElementById('imageCanvas');
-        // var ctx = canvas.getContext('2d');
         var img = new Image();
         img.crossOrigin = "anonymous";
-
-        window.addEventListener('load', DrawPlaceholder)
-
-        function DrawPlaceholder() {
-            // img.onload = function() {
-            //     DrawOverlay(img);
-            //     DrawText();
-            //     DynamicText(img)
-            // };
-            // img.src = 'https://unsplash.it/3440/4386/?random';
-            // DrawOverlay();
-            // DrawText('MIAMI', 'UNITED STATES', `80° 11' 37″ S  25° 46' 27″ E`);
-            // DynamicText('MIAMI', 'UNITED STATES', `80° 11' 37″ S  25° 46' 27″ E`);
-        }
-
-        function DrawOverlay() {
-            // ctx.drawImage(img,0,0);
-            // ctx.fillStyle = bg_color;
-            // ctx.fillRect(0, 0, canvas.width, canvas.height * 2);
-            // ctx.clearRect(40, 40, canvas.width / 1.1, canvas.height / 1.35);
-
-            //ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        }
         let title, country, latLng;
         function DrawText(text_title, state, latlng) {
-            // ctx.fillStyle = "white";
-            // ctx.textBaseline = 'middle';
             title = text_title;
             country = state
             latLng = latlng;
@@ -1186,38 +1116,20 @@
             latlng_font: "30px 'Arial'",
         }
         function DrawText1(title, country, latLng, DTstyle) {
-            // ctx.fillStyle = "white";
-            // ctx.textBaseline = 'middle';
-            // title=text_title;
-            // country=state
-            // latLng=latlng;
-            // ctx.clearRect(0, 0, canvas.width, canvas.height);
             console.log(title);
             ctx.textAlign = DTstyle.text_Align;
             ctx.fillStyle = DTstyle.text_Style;
             ctx.font = DTstyle.title_font;
             ctx.fillText(title, 1056 / 2, 1410 / 1.1);
-
             ctx.font = DTstyle.country_font;
             ctx.fillText(country, 1056 / 2, 1475 / 1.1);
-
             ctx.font = DTstyle.latlng_font;
             ctx.fillText(latLng, 1056 / 2, 1530 / 1.1);
         }
-        //    DrawText1(title, country, latLng, DTstyle)
-
         function DynamicText(value, state, latlng) {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             DrawOverlay();
             DrawText(value, state, latlng);
-            //         text_title = value;
-            //         ctx.fillText(text_title, 1056/2, 1390/1.1);
-
-            //         ctx.font = "40px 'Montserrat'";
-            // ctx.fillText(state, 1056/2, 1440/1.1);
-
-            // ctx.font = "25px 'Montserrat'";
-            // ctx.fillText(latlng, 1056/2, 1480/1.1);
         }
         function handleImage(e) {
             var reader = new FileReader();
@@ -1237,37 +1149,46 @@
                 DrawText();
                 DynamicText(img);
             }
-
             reader.readAsDataURL(e.target.files[0]);
-
         }
-
         mapboxgl.accessToken = 'pk.eyJ1Ijoia2FyYW5nMHlhbCIsImEiOiJja2VlaG42eDUwZnppMnlveXJtcjdvOGtvIn0.KoPWjGAkfBFhFBEuSUinlw';
         let style_ID = 'clia1ewf100wd01pn6l9vgqwd'
-        // var map = new mapboxgl.Map({
-        //     container: 'map', // container id
-        //     style: 'mapbox://styles/karang0yal/clia1ewf100wd01pn6l9vgqwd', //hosted style id
-        //     zoom: 14,
-        //     center: [-80.19125409514797, 25.78075907018487],
-        //     preserveDrawingBuffer: true
-        // });
         setInterval(()=>{
-
             if (window.innerWidth <= 1200 && window.innerWidth > 576) {
                 if(selected_layout=='polar'){
                     map.getContainer().style.width = 378 + 'px';
                     map.getContainer().style.height = 583 + 'px';
+                    map.getCanvas().style.height= 425 + 'px';
+                    map.getCanvas().style.maxHeight= 425 + 'px';
                 }else if(selected_layout=='card'){
-                    // map.getContainer().style.width = 378 + 'px';
-                    // map.getContainer().style.height = 583 + 'px';
+                    map.getContainer().style.width = 410 + 'px';
+                    map.getContainer().style.height = 583 + 'px';
                 }
-        } else if (window.innerWidth <= 576 && selected_layout=='polar') {
-            map.getContainer().style.width = 309 + 'px';
-            map.getContainer().style.height = 476 + 'px';
-        }else if (window.innerWidth > 1200 && selected_layout=='polar') {
-            map.getContainer().style.width = 483 + 'px';
-            map.getContainer().style.height = 742 + 'px';
-            map.getCanvas().style.height= 550+ 'px';
+        } else if (window.innerWidth <= 576) {
+           
+            if(selected_layout=='polar'){
+                map.getContainer().style.width = 309 + 'px';
+                map.getContainer().style.height = 476 + 'px';
+                map.getCanvas().style.height= 355 + 'px';
+                map.getCanvas().style.maxHeight= 355 + 'px';
+            }else if(selected_layout=='card'){
+                map.getContainer().style.width = 325 + 'px';
+                map.getContainer().style.height = 476 + 'px';
+                map.getCanvas().style.height= 476 + 'px';
+                }
+        }else if (window.innerWidth > 1200) {
+           
+            if(selected_layout=='polar'){
+                map.getContainer().style.width = 483 + 'px';
+                map.getContainer().style.height = 742 + 'px';
+                map.getCanvas().style.height= 550 + 'px';
+                map.getCanvas().style.maxHeight= 550 + 'px';
+                }else if(selected_layout=='card'){
+                    map.getContainer().style.width = 525 + 'px';
+                    map.getContainer().style.height = 742 + 'px';
+                    map.getCanvas().style.height= 742 + 'px';
+                    map.getCanvas().style.maxHeight= 742 + 'px';
+                }
         }
     }, 10)
         map.addControl(new watergis.MapboxExportControl({
@@ -1321,7 +1242,6 @@
         geocoder.on('result', e => {
             console.log(e);
             console.log(e.result.place_name.split(', ').splice(-1, 1)[0])
-            // DynamicText(e.result.text.toUpperCase(), e.result.place_name.split(', ').splice(-1, 1)[0].toUpperCase(), convertDMS(e.result.center[0], e.result.center[1]))
             document.querySelector('#map_text h2').innerHTML = e.result.text.toUpperCase()
             document.querySelectorAll('#map_text p')[0].innerHTML = e.result.place_name.split(', ').splice(-1, 1)[0].toUpperCase()
             document.querySelectorAll('#map_text p')[1].innerHTML = convertDMS(e.result.center[0], e.result.center[1])
@@ -1338,7 +1258,6 @@
             var canvas = document.getElementById("canvas-total");
             var ctx = canvas.getContext("2d");
             if (imagesLoaded == 2) {
-                // composite now
                 ctx.drawImage(img1, 0, 0, canvas.width, canvas.height);
                 ctx.globalAlpha = 1;
                 ctx.drawImage(img2, 40 * 3, 40 * 3, canvas.width / 1.085, canvas.height / 1.35);
@@ -1346,15 +1265,12 @@
             }
         }
         function loadImage(src, onload) {
-            // http://www.thefutureoftheweb.com/blog/image-onload-isnt-being-called
             var img = new Image();
             img.onload = onload;
             img.src = src;
             return img;
         }
-        // let bg_color = '#ffffff';
-        // document.querySelector('#imageCanvas').style.backgroundColor = bg_color;
-        // // goto_advanced_tab_map_style
+    
         document.querySelector('.advance_tab_link').addEventListener('click', function () {
             if (document.querySelector('.accordion-item-new button').ariaExpanded == 'false') {
                 const triggerEl = document.querySelector('#v-pills-tab button[data-bs-target="#v-pills-advanced"]')
@@ -1369,8 +1285,6 @@
         let mapstyle;
         let selected_layout = 'polar';
         let selected_layout_index = '1';
-
-        // select_advanced_tab_map_style
         function select_img(e) {
 
             let maptext = document.querySelector('#map_text')
@@ -1422,8 +1336,6 @@
                     style_ID = 'clia42y6g02uh01pnawdg4zun'
                     map.setStyle("mapbox://styles/karang0yal/clia42y6g02uh01pnawdg4zun")
                     canvas.classList.add('bg_color')
-                    // DTstyle.text_Style = '#ffffff'
-                    // DrawText1(title, country, latLng, DTstyle)
                     if (selected_layout == 'card' || selected_layout == 'classic' || selected_layout == 'architect') {
                         maptext.classList.add('bg_color', 'text_color_light')
                     } else if (selected_layout == 'polar') {
@@ -1471,7 +1383,6 @@
                 }
             }
             if (e.target.parentNode.parentNode.className == 'advanced_tab_map_style_cont frame_cont') {
-                // map.setStyle('mapbox://styles/mapbox/' + e.target.id);
             }
             console.log(e.target.parentNode.parentNode.className)
             console.log(e.target.id)
@@ -1496,12 +1407,8 @@
                     }
                     e.target.parentNode.parentNode.classList.add('select_border')
                 }
-            } else {
-                // e.target.parentNode.classList.remove('select_border')
-            }
+            } 
         }
-        // document.querySelector('.style_tab_design_cont').addEventListener('click', select_img)
-        // document.querySelector('.size_tab_frame_cont').addEventListener('click', select_img)
         document.querySelector('.advanced_tab_map_style_cont').addEventListener('click', map_layout)
         document.querySelector('.advanced_tab_map_color_cont').addEventListener('click', select_img)
         // rotate_map 
@@ -1552,7 +1459,6 @@
             ] : null
             e.target.ariaCurrent != 'classic' || e.target.ariaCurrent != 'halo' ? [
                 maptext.classList.remove('map_over_text_classic'),
-                // maptext.classList.add('map_over_text_bg_color', 'map_over_text_border'),
             ] : null
             if (e.target.ariaCurrent == 'classic') {
                 mapbox.style.maxHeight = h - (h * 5.66 / 100) + 'px'
@@ -1587,7 +1493,6 @@
                     maptext.classList.add('text_color_dark')
                 }
                 squareText()
-                // console.log(Math.round(text_size))
             } else if (e.target.ariaCurrent == 'architect') {
                 mapbox.style.maxHeight = h - (h * 5.66 / 100) + 'px'
                 mapbox.style.width = w - (w * 7.77 / 100) + 'px'
@@ -1617,7 +1522,6 @@
             else if (e.target.ariaCurrent == 'card') {
                 mapbox.classList.add('mapboxgl-canvas-new')
                 mapcont.style.width = w + 'px'
-                // mapbox.style.width = w + 'px'
                 mapbox.style.maxHeight = h + 'px'
                 maptext.classList.add('map_over_text1')
                 maptext.classList.remove('map_over_text_border', 'display_none')
@@ -1632,7 +1536,6 @@
             }
             map.resize()
         }
-
         function squareText() {
             let width = map.getContainer().getBoundingClientRect().width
             let height = map.getContainer().getBoundingClientRect().height - 130
@@ -1701,8 +1604,6 @@
             building_color = '',
             water_color = '',
             new_color = '';
-
-
         for (const color of colors) {
             const swatch = document.createElement('button');
             swatch.style.backgroundColor = color;
@@ -1768,7 +1669,6 @@
                     console.log(e);
                 } else {
                     e.target.classList.add('black_color')
-                    // e.target.classList.remove('black_color')
                     display = 'none';
                 }
                 map.setLayoutProperty('settlement-major-label', 'visibility', display);
@@ -1791,7 +1691,6 @@
             });
         })
         document.querySelectorAll(".advanced_tab_btn_cont1 button").forEach((ele) => {
-
             ele.addEventListener("click", function (e) {
                 document.querySelectorAll(".advanced_tab_btn_cont1 button").forEach((el) => {
                     el.classList.remove("black_color");
@@ -1808,7 +1707,6 @@
                     map.setLayoutProperty('building', 'visibility', 'visible');
                     e.target.classList.add('black_color')
                 } else {
-
                     console.log(e.target.innerHTML);
                     map.setLayoutProperty('road-simple', 'visibility', 'visible');
                     map.setLayoutProperty('building', 'visibility', 'visible');
@@ -1821,19 +1719,15 @@
         document.querySelectorAll('.icon_cont i').forEach((ele) => {
             ele.addEventListener('click', function (event) {
                 console.log(event.target)
-
                 document.querySelector('.over_element') != null ? [
                     document.querySelector('.over_element').parentNode.removeChild(document.querySelector('.over_element'))
                 ] : null
                 marker_icon = event.target.outerHTML;
                 new_marker_icon = event.target.cloneNode(true)
                 new_marker_icon.classList.add('display_none');
-                // event.target.classList.add('over_element')
                 let element = event.target.cloneNode(true)
                 console.log(element)
-                // new_marker_icon = element;
                 element.classList.add('over_element')
-                // let wrapcont = `<div class='over_element'>${element}</div>`
                 document.body.appendChild(element)
                 document.body.classList.add('cursur_none')
                 document.querySelector('.mapboxgl-canvas').classList.add('cursur_none')
@@ -1846,28 +1740,18 @@
             document.querySelector('.over_element').setAttribute('style', `top:${e.clientY - 25.5}px;left:${e.clientX - 11}px`)
         }
         var coordinates;
-        function add_marker(event) {
-            // console.log(event)
+        function add_marker(event) { 
             coordinates = event.lngLat;
-            // console.log(coordinates);
-            // console.log(event.originalEvent.target.nodeName)
-
             document.body.appendChild(new_marker_icon)
-            // console.log('Lng:', coordinates.lng, 'Lat:', coordinates.lat);
             marker.setLngLat(coordinates).addTo(map);
             document.querySelector(".mapboxgl-marker").innerHTML = marker_icon == undefined ? '' : marker_icon + '<button class="marker_remove_btn"onclick="remove_marker()">x</button>'
             event.originalEvent.target.nodeName == 'BUTTON' ? '' : [
                 document.querySelector(".mapboxgl-marker").classList.remove('display_none'),
                 document.querySelector('#icon_size_range').removeAttribute('disabled'),
                 document.querySelector('#icon_color_picker').removeAttribute('disabled')
-            ]
-
-
-        }
-        document.querySelectorAll('#v-pills-tab button').forEach((ele) => {
-            // console.log(ele)
-            ele.addEventListener('click', function (e) {
-                // console.log(e)
+            ]}
+        document.querySelectorAll('#v-pills-tab button').forEach((ele) => {      
+            ele.addEventListener('click', function (e) {              
                 e.target.innerText == 'award_star' || e.target.innerText == 'award_star\nIcons' ? '' : [
                     document.querySelector('.over_element') != null ? [
                         document.body.removeEventListener('mousemove', myFunction),
@@ -1885,9 +1769,7 @@
                 document.querySelectorAll('#map_text p')[1].innerHTML = convertDMS(map.getCenter().lng, map.getCenter().lat)
                 document.querySelectorAll(".label_input_cont form input")[2].value = convertDMS(map.getCenter().lng, map.getCenter().lat)
             }
-
             const marker_cont = document.querySelector(".mapboxgl-marker");
-            // console.log(marker_cont.parentElement.className)
             marker_cont == null ? '' : [
                 marker_cont.parentElement.className == "mapboxgl-canvas-container mapboxgl-interactive mapboxgl-touch-drag-pan mapboxgl-touch-zoom-rotate" ? marker_cont.classList.remove('display_none') : marker_cont.classList.add('display_none')
             ]
@@ -1899,24 +1781,17 @@
             document.querySelector('#icon_size_range').setAttribute('disabled', 'disabled');
             document.querySelector('#icon_color_picker').setAttribute('disabled', 'disabled');
         }
-
         // map_icon_manual_size
         let icon_color
         let icon_size;
         document.querySelector('#icon_size_range').addEventListener('input', function (event) {
             document.querySelector('.mapboxgl-marker i').style.fontSize = event.target.value + 'px'
-            icon_size = document.querySelector('.mapboxgl-marker i').style.fontSize;
-            // var style = document.createElement("style");
+            icon_size = document.querySelector('.mapboxgl-marker i').style.fontSize;        
             icon_color != undefined ? [
-                // new_marker_icon.classList.add('icon_font_size'),
                 new_marker_icon.setAttribute('style', `font-size:${icon_size}; color:${icon_color}`),
-                // document.styleSheets[2].cssText = `.icon_font_size {color:${icon_color}; font-size:${icon_size}}`,
                 document.body.appendChild(new_marker_icon)
-
             ] : [
                 new_marker_icon.setAttribute('style', `font-size:${icon_size}`),
-                // new_marker_icon.classList.add('icon_font_size'),
-                // document.styleSheets[2].cssText=`.icon_font_size {font-size:${icon_size}}`,
                 document.body.appendChild(new_marker_icon)
             ]
         })
@@ -1925,23 +1800,14 @@
             document.querySelector('.mapboxgl-marker i').style.color = event.target.value;
             console.log(event.target.value)
             icon_color = event.target.value;
-            // var style = document.createElement("style");
-            icon_size != undefined ? [
-                // new_marker_icon.classList.add('icon_font_size'),
+            icon_size != undefined ? [ 
                 new_marker_icon.setAttribute('style', `font-size:${icon_size}; color:${icon_color}`),
-                // document.styleSheets[2].cssText =`.icon_font_size {color:${icon_color}; font-size:${icon_size}}`,
                 document.body.appendChild(new_marker_icon)
             ] : [
                 new_marker_icon.setAttribute('style', `color:${icon_color}`),
-                // new_marker_icon.classList.add('icon_font_size'),
-                // document.styleSheets[2].cssText =`.icon_font_size {color:${icon_color}}`,
                 document.body.appendChild(new_marker_icon)
-
-            ]
-
-        })
+            ]})
         document.querySelectorAll('.label_input_cont form input').forEach((ele) => {
-
             ele.addEventListener('input', function (event) {
                 console.log(event.target.checked)
                 const target = event.target
@@ -1961,37 +1827,28 @@
                     document.querySelectorAll('.label_input_cont form input')[2].removeAttribute('disabled')
                     freeze_cordi = true;
                 }
-
             });
         })
-
-
-
     </script>
     <script>
         document.querySelector('.content_wrapper .map_print_btn').onclick = function () {
             document.querySelector('.bottom-sheet-wrapper').classList.add('show-modal');
         }
-
         document.querySelector('.close').onclick = function () {
             document.querySelector('.bottom-sheet-wrapper').classList.remove('show-modal');
         }
-
         document.querySelector('.backdrop').onclick = function () {
             document.querySelector('.bottom-sheet-wrapper').classList.remove('show-modal');
         }
-        
         $('#cart_btn').click(()=>{
             $('.map_print_btn').click()
             $('#generate-btn').click()
-        }
-        )
+        })
         $('.canvas-mapboxgl-container').hide()
         map.on('load', function () {
             $('.content_cont_loader').hide()
             $('.canvas-mapboxgl-container').show()
-        })
-        
+        })    
     </script>
 
 
