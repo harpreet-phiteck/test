@@ -427,13 +427,13 @@ canvas.mapboxgl-canvas-new {
 .map_over_text1 {
     position: absolute;
     z-index: 5;
-    left: -2.2%;
-    bottom: .5%;
-    padding: 4% 5%;
-    /* color: #000000; */
+    left: -2.1%;
+    bottom: 0%;
+    padding: 3.5% 3%;
+    outline: 1px solid #ffffff;
     text-align: center;
     text-shadow: 0px 0px 2px #ffffff;
-    right: 2.2%;
+    right: 2.4%;
     display: flex;
     align-items: baseline;
     background-color: #ffffff;
@@ -493,6 +493,7 @@ canvas.mapboxgl-canvas-new {
 
 .bg_color {
     background-color: #25637a !important;
+    outline: 1px solid #25637a;
 }
 
 .border_2 {

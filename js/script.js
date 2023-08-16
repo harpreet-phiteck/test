@@ -82,7 +82,9 @@ try {
 }
 
 // Geolocation
-
+  // Provide your Mapbox access token
+  var accessToken =
+  "pk.eyJ1Ijoia2FyYW5nMHlhbCIsImEiOiJja2VlaG42eDUwZnppMnlveXJtcjdvOGtvIn0.KoPWjGAkfBFhFBEuSUinlw";
 if ("geolocation" in navigator) {
   navigator.geolocation.getCurrentPosition(function (position) {
     "use strict";
@@ -90,67 +92,72 @@ if ("geolocation" in navigator) {
       center: [position.coords.longitude, position.coords.latitude],
       zoom: 10,
     });
-
-    function getLocationName(latitude, longitude, accessToken) {
-      var url = `https://api.tiles.mapbox.com/geocoding/v5/mapbox.places-v1/${longitude},${latitude}.json`;
-      var params = {
-        access_token: accessToken,
-      };
-
-      fetch(url + "?" + new URLSearchParams(params))
-        .then((response) => response.json())
-        .then((e) => {
-          if (e.features.length > 0) {
-            console.log(e);
-            // var locationName = data;
-            document.querySelector("#map_text h2").innerHTML =
-              e.features[0].text.toUpperCase();
-            document.querySelectorAll("#map_text p")[0].innerHTML =
-              e.features[0].place_name
-                .split(", ")
-                .splice(-1, 1)[0]
-                .toUpperCase();
-            document.querySelectorAll("#map_text p")[1].innerHTML = convertDMS(
-              e.features[0].center[0],
-              e.features[0].center[1]
-            );
-            document.querySelectorAll(".label_input_cont form input")[0].value =
-              document.querySelector("#map_text h2").innerHTML;
-            document.querySelectorAll(".label_input_cont form input")[1].value =
-              document.querySelectorAll("#map_text p")[0].innerHTML;
-            document.querySelectorAll(".label_input_cont form input")[2].value =
-              document.querySelectorAll("#map_text p")[1].innerHTML;
-          } else {
-            console.log("Location not found.");
-          }
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
-    }
-
-    // Provide your Mapbox access token
-    var accessToken =
-      "pk.eyJ1Ijoia2FyYW5nMHlhbCIsImEiOiJja2VlaG42eDUwZnppMnlveXJtcjdvOGtvIn0.KoPWjGAkfBFhFBEuSUinlw";
-
     // Specify the latitude and longitude
     var latitude = position.coords.latitude;
-    var longitude = position.coords.longitude;
+  var longitude = position.coords.longitude;
+   
 
     // Call the function to get the location name
     getLocationName(latitude, longitude, accessToken);
     //
     // Errors
     //
+  },function(error) {
+    if (error.code == error.PERMISSION_DENIED)
+       var latitude = 30.704649;
+  var longitude = 76.717873;
+  map.flyTo({
+    center: [longitude, latitude],
+    zoom: 10,
+  });
+  // Call the function to get the location name
+  getLocationName(latitude, longitude, accessToken);
   });
 }
+function getLocationName(latitude, longitude, accessToken) {
+  var url = `https://api.tiles.mapbox.com/geocoding/v5/mapbox.places-v1/${longitude},${latitude}.json`;
+  var params = {
+    access_token: accessToken,
+  };
 
+  fetch(url + "?" + new URLSearchParams(params))
+    .then((response) => response.json())
+    .then((e) => {
+      if (e.features.length > 0) {
+        console.log(e);
+        // var locationName = data;
+        document.querySelector("#map_text h2").innerHTML =
+          e.features[0].text.toUpperCase();
+        document.querySelectorAll("#map_text p")[0].innerHTML =
+          e.features[0].place_name
+            .split(", ")
+            .splice(-1, 1)[0]
+            .toUpperCase();
+        document.querySelectorAll("#map_text p")[1].innerHTML = convertDMS(
+          e.features[0].center[0],
+          e.features[0].center[1]
+        );
+        document.querySelectorAll(".label_input_cont form input")[0].value =
+          document.querySelector("#map_text h2").innerHTML;
+        document.querySelectorAll(".label_input_cont form input")[1].value =
+          document.querySelectorAll("#map_text p")[0].innerHTML;
+        document.querySelectorAll(".label_input_cont form input")[2].value =
+          document.querySelectorAll("#map_text p")[1].innerHTML;
+      } else {
+        console.log("Location not found.");
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+}
 var maxSize;
 if (map) {
   var canvas = map.getCanvas();
   var gl = canvas.getContext("experimental-webgl");
   maxSize = gl.getParameter(gl.MAX_RENDERBUFFER_SIZE);
 }
+
 
 var errors = {
   width: {
@@ -206,9 +213,7 @@ function isError() {
   return false;
 }
 
-//
 // Configuration changes / validation
-//
 
 form.widthInput.addEventListener("change", function (e) {
   "use strict";
@@ -379,9 +384,7 @@ function measureScrollbar() {
   return scrollbarWidth;
 }
 
-//
 // Helper functions
-//
 
 function toPixels(length) {
   "use strict";
@@ -394,9 +397,7 @@ function toPixels(length) {
   return conversionFactor * length + "px";
 }
 
-//
 // High-res map rendering
-//
 
 document.getElementById("generate-btn").addEventListener("click", generateMap);
 function generateMap() {
@@ -652,14 +653,24 @@ function createPrintMap(
        point = renderMap.project(coordinates);
       console.log(point);
     }
-
     new_img.onload = () => {
       var d_canvas = document.getElementById("new_map");
       var context = d_canvas.getContext("2d");
   
       context.drawImage(new_img, 0, 0);
-      if(marker_icon!=undefined) {
+      if(marker_icon==undefined){
+        var base64 = d_canvas.toDataURL("image/png");
+        var a = document.createElement("a");
+        mapData.MapImg = base64; 
+        // console.log(img);
+        a.href = base64,
+        a.target = "_blank";
+        a.download = "myImage.png";
+        // document.body.appendChild(a);
+        a.click();
+      }
 
+      if(marker_icon!=undefined) {
         let icon_width =   $(".mapboxgl-marker i").width()
         let icon_height =   $(".mapboxgl-marker i").height()
         let icon_left = point.x * 3.125;
@@ -677,7 +688,7 @@ function createPrintMap(
         (new_canvas) => {
           console.log(icon_width);
           // canvas2=new_canvas
-            document.body.appendChild(new_canvas);
+            // document.body.appendChild(new_canvas);
           let img_src = new_canvas.toDataURL("image/png");
           const new_icon_img = document.createElement("img");
           new_icon_img.id = "map_icon";
@@ -719,11 +730,11 @@ function createPrintMap(
             var a = document.createElement("a");
             mapData.MapImg = base64; 
             // console.log(img);
-     // (a.href = base64), (a.target = "_blank");
-            // a.download = "myImage.png";
+     (a.href = base64), (a.target = "_blank");
+            a.download = "myImage.png";
 
             // document.body.appendChild(a);
-            // a.click();
+            a.click();
 
             renderMap.remove();
             hidden.parentNode.removeChild(hidden);
