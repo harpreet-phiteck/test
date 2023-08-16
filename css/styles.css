@@ -457,7 +457,7 @@ canvas.mapboxgl-canvas-new {
 
 .map_over_width {
     width: 100%;
-    left: 0%;
+    left: 2%;
 }
 
 .map_over_text2 h2 {
@@ -501,8 +501,8 @@ canvas.mapboxgl-canvas-new {
 }
 
 .architect_layout_text {
-    bottom: 3.9%;
-    right: -1.6%;
+    bottom: 3.6%;
+    right: -1.8%;
     left: auto;
     padding: 0% 1%;
 }
@@ -770,13 +770,13 @@ canvas.mapboxgl-canvas-new {
     .map_over_text1 {
         position: absolute;
         z-index: 5;
-        left: -3.2%;
+        left: -2.9%;
         bottom: 0%;
         padding: 4% 5%;
         /* color: #000000; */
         text-align: center;
         text-shadow: 0px 0px 2px #ffffff;
-        right: 2.8%;
+        right: 3.5%;
         display: flex;
         align-items: baseline;
         background-color: #ffffff;
@@ -796,14 +796,14 @@ canvas.mapboxgl-canvas-new {
     }
 
     .architect_layout_text {
-        bottom: 4.3%;
+        bottom: 4.4%;
         right: -1.2%;
         left: auto;
         padding: 0% 1%;
     }
 
     canvas.mapboxgl-canvas-new {
-        margin-top: -31px !important;
+        margin-top: 0px !important;
     }
 }
 
@@ -837,7 +837,7 @@ canvas.mapboxgl-canvas-new {
     }
 
     .architect_layout_text {
-        bottom: 3.8%;
+        bottom: 4.4%;
     }
     .content_wrapper .map_print_btn {
         position: absolute;
@@ -871,12 +871,12 @@ canvas.mapboxgl-canvas-new {
     }
 
     canvas.mapboxgl-canvas-new {
-        margin-top: -30px !important;
+        margin-top: -1px !important;
+        left: 0px;
     }
 
     #imageCanvas {
         height: 472px;
-        /* top: 40px; */
     }
 
     canvas.mapboxgl-canvas {
@@ -903,7 +903,7 @@ canvas.mapboxgl-canvas-new {
     .map_over_text1 {
         position: absolute;
         z-index: 5;
-        left: -12px;
+        left: 0px;
         bottom: 0.5%;
         padding: 5% 0%;
         /* color: #000000; */
@@ -934,13 +934,16 @@ canvas.mapboxgl-canvas-new {
     }
 
     .architect_layout_text {
-        bottom: 3.8%;
-        right: -0.8%;
+        bottom: 3.6%;
+        right: -0.6%;
         left: auto;
         padding: 0% 1%;
     }
     .bottom-sheet-wrapper .backdrop{
         width: 100%;
+    }
+    .card_left{
+        left: 0px !important;
     }
    
 }

@@ -160,6 +160,7 @@
             padding: 30px;
 
         }
+
         .bottom-sheet-wrapper.show-modal .backdrop {
             opacity: 1;
             pointer-events: all;
@@ -221,6 +222,7 @@
             }
 
         }
+
         .card button {
             border: none;
             outline: 0;
@@ -299,7 +301,7 @@
                                     <form>
                                         <div class="map_input_cont">
                                             <label for="exampleFormControlInput1" class="form-label">SEARCH FOR A
-                                                PLACE</label>                        
+                                                PLACE</label>
                                             <div id="geocoder" class="geocoder"></div>
                                             <div class="current_location_cont">
                                                 <span>Or</span><a href="#"> Use your current position</a>
@@ -736,32 +738,38 @@
                                                                 <div
                                                                     class="frame_type_img_cont map_layout_cont select_border">
                                                                     <img src="images/polar.svg" alt="style_none_img1"
-                                                                        id="satellite-v9" aria-current="polar" aria-colindex="1">
+                                                                        id="satellite-v9" aria-current="polar"
+                                                                        aria-colindex="1">
                                                                     <div style="font-size:10px;">Polor</div>
                                                                 </div>
                                                                 <div class="frame_type_img_cont map_layout_cont">
                                                                     <img src="images/boxed.svg" alt="style_none_img1"
-                                                                        id="light-v10" aria-current="classic" aria-colindex="2">
+                                                                        id="light-v10" aria-current="classic"
+                                                                        aria-colindex="2">
                                                                     <div style="font-size:10px;">Classic</div>
                                                                 </div>
                                                                 <div class="frame_type_img_cont map_layout_cont">
                                                                     <img src="images/halo.svg" alt="style_none_img1"
-                                                                        id="dark-v10" aria-current="halo" aria-colindex="3">
+                                                                        id="dark-v10" aria-current="halo"
+                                                                        aria-colindex="3">
                                                                     <div style="font-size:10px;">Halo</div>
                                                                 </div>
                                                                 <div class="frame_type_img_cont map_layout_cont">
                                                                     <img src="images/square.svg" alt="style_none_img1"
-                                                                        id="streets-v11" aria-current="square" aria-colindex="4">
+                                                                        id="streets-v11" aria-current="square"
+                                                                        aria-colindex="4">
                                                                     <div style="font-size:10px;">square</div>
                                                                 </div>
                                                                 <div class="frame_type_img_cont map_layout_cont">
                                                                     <img src="images/card.svg" alt="style_none_img1"
-                                                                        id="outdoors-v11" aria-current="card" aria-colindex="5">
+                                                                        id="outdoors-v11" aria-current="card"
+                                                                        aria-colindex="5">
                                                                     <div style="font-size:10px;">Card</div>
                                                                 </div>
                                                                 <div class="frame_type_img_cont map_layout_cont">
                                                                     <img src="images/label.svg" alt="style_none_img1"
-                                                                        id="navigation-day-v1" aria-current="architect" aria-colindex="6">
+                                                                        id="navigation-day-v1" aria-current="architect"
+                                                                        aria-colindex="6">
                                                                     <div style="font-size:10px;">architect</div>
                                                                 </div>
                                                             </div>
@@ -847,7 +855,7 @@
             </div>
             <div class="content_cont">
                 <div class="content_wrapper">
-                    <button class="map_print_btn bg-light btn d-none">Print</button>    
+                    <button class="map_print_btn bg-light btn d-none">Print</button>
                     <div class="page-wrap d-none">
                         <div class="controls">
                             <input class="controls__input" type="file" id="imageLoader" name="imageLoader" />
@@ -861,6 +869,7 @@
                     </div>
                     <div id='map' style="width: 483px;height:742px;margin:10px auto;overflow: inherit;">
                         <div class="map_over_text map_over_text_bg_color text_color_dark" id="map_text">
+
                             <h2 class="px-1">MIAMI</h2>
                             <p class="px-1">UNITED STATES</p>
                             <p class="px-1">80° 11' 37″ S 25° 46' 27″ E</p>
@@ -1153,59 +1162,81 @@
         }
         mapboxgl.accessToken = 'pk.eyJ1Ijoia2FyYW5nMHlhbCIsImEiOiJja2VlaG42eDUwZnppMnlveXJtcjdvOGtvIn0.KoPWjGAkfBFhFBEuSUinlw';
         let style_ID = 'clia1ewf100wd01pn6l9vgqwd'
-        setInterval(()=>{
+        setInterval(() => {
+            let canvas_width =  $('#imageCanvas').width()
+            let text_over_width = $('.map_over_text').width()
+            // selected_layout == 'classic'|| selected_layout == 'halo' ? $('.map_over_text').css('left',`${(canvas_width-text_over_width)/2.5}px`):null 
+            
             if (window.innerWidth <= 1200 && window.innerWidth > 576) {
-                if(selected_layout=='polar'){
+                if (selected_layout == 'polar') {
                     map.getContainer().style.width = 378 + 'px';
                     map.getContainer().style.height = 583 + 'px';
-                    map.getCanvas().style.height= 425 + 'px';
-                    map.getCanvas().style.maxHeight= 425 + 'px';
-                }else if(selected_layout=='card'){
+                    map.getCanvas().style.height = 425 + 'px';
+                    map.getCanvas().style.maxHeight = 425 + 'px';
+                } else if (selected_layout == 'card') {
                     map.getContainer().style.width = 410 + 'px';
                     map.getContainer().style.height = 583 + 'px';
                     map.getContainer().style.maxHeight = 583 + 'px';
-                }else{
+                    map.getCanvas().style.maxHeight = 583 + 'px';
+                    map.getCanvas().style.height = 583 + 'px';
+                } else {
                     map.getContainer().style.width = 378 + 'px';
                     map.getContainer().style.height = 583 + 'px';
                     map.getContainer().style.maxHeight = 583 + 'px';
+                    map.getCanvas().style.maxHeight = 540 + 'px';
+                    map.getCanvas().style.height = 540 + 'px';
+                    selected_layout == 'square' ? squareText() : null
+                    selected_layout == 'classic'|| selected_layout == 'halo' ? $('.map_over_text').css('left',`${(canvas_width-text_over_width)/2.6}px`):null 
                 }
-         } else if (window.innerWidth <= 576) {
-           
-            if(selected_layout=='polar'){
-                map.getContainer().style.width = 309 + 'px';
-                map.getContainer().style.height = 476 + 'px';
-                map.getCanvas().style.height= 355 + 'px';
-                map.getCanvas().style.maxHeight= 355 + 'px';
-            }else if(selected_layout=='card'){
-                map.getContainer().style.width = 325 + 'px';
-                map.getContainer().style.height = 476 + 'px';
-                map.getCanvas().style.height= 476 + 'px';
-                }else{
+            } else if (window.innerWidth <= 576) {
+                
+                if (selected_layout == 'polar') {
                     map.getContainer().style.width = 309 + 'px';
-                    map.getContainer().style.height = 445 + 'px';
-                    map.getContainer().style.maxHeight = 445 + 'px';
+                    map.getContainer().style.height = 476 + 'px';
+                    map.getCanvas().style.height = 355 + 'px';
+                    map.getCanvas().style.maxHeight = 355 + 'px';
+                    $('#imageCanvas').remove('card_left');
+                } else if (selected_layout == 'card') {
+                    map.getContainer().style.width = 336 + 'px';
+                    map.getContainer().style.height = 472 + 'px';
+                    map.getCanvas().style.height = 472 + 'px';
+                    map.getCanvas().style.maxHeight = 472 + 'px';
+                    $('#imageCanvas').addClass('card_left');
+                } else {
+                    $('#imageCanvas').removeClass('card_left');
+                    map.getContainer().style.width = 309 + 'px';
+                    map.getContainer().style.height = 472 + 'px';
+                    map.getContainer().style.maxHeight = 472 + 'px';
+                    map.getCanvas().style.maxHeight = 445 + 'px';
+                    map.getCanvas().style.height = 445 + 'px';
+                    selected_layout == 'square' ? squareText() : null
+                    selected_layout == 'classic'|| selected_layout == 'halo' ? $('.map_over_text').css('left',`${(canvas_width-text_over_width)/2.8}px`):null 
                 }
-        }else if (window.innerWidth > 1200) {
-           
-            if(selected_layout=='polar'){
-                map.getContainer().style.width = 483 + 'px';
-                map.getContainer().style.height = 742 + 'px';
-                map.getContainer().style.maxHeight = 742 + 'px';
-                map.getCanvas().style.height= 550 + 'px';
-                map.getCanvas().style.maxHeight= 550 + 'px';
-            }else if(selected_layout=='card'){
-                    map.getContainer().style.width = 525 + 'px';
-                    map.getContainer().style.height = 735 + 'px';
-                    map.getContainer().style.maxHeight = 735 + 'px';
-                    map.getCanvas().style.height= 735 + 'px';
-                    map.getCanvas().style.maxHeight= 735 + 'px';
-            }else{
+            } else if (window.innerWidth > 1200) {
+                
+                if (selected_layout == 'polar') {
                     map.getContainer().style.width = 483 + 'px';
                     map.getContainer().style.height = 742 + 'px';
                     map.getContainer().style.maxHeight = 742 + 'px';
+                    map.getCanvas().style.height = 550 + 'px';
+                    map.getCanvas().style.maxHeight = 550 + 'px';
+                } else if (selected_layout == 'card') {
+                    map.getContainer().style.width = 525 + 'px';
+                    map.getContainer().style.height = 735 + 'px';
+                    map.getContainer().style.maxHeight = 735 + 'px';
+                    map.getCanvas().style.height = 735 + 'px';
+                    map.getCanvas().style.maxHeight = 735 + 'px';
+                } else {
+                    map.getContainer().style.width = 483 + 'px';
+                    map.getContainer().style.height = 742 + 'px';
+                    map.getContainer().style.maxHeight = 742 + 'px';
+                    map.getCanvas().style.maxHeight = 695 + 'px';
+                    map.getCanvas().style.height = 695 + 'px';
+                    selected_layout == 'square' ? squareText() : null
+                    selected_layout == 'classic'|| selected_layout == 'halo' ? $('.map_over_text').css('left',`${(canvas_width-text_over_width)/2.5}px`):null 
                 }
-        }
-    }, 10)
+            }
+        }, 10)
         map.addControl(new watergis.MapboxExportControl({
             PageSize: watergis.Size.A3,
             PageOrientation: watergis.PageOrientation.Portrait,
@@ -1267,7 +1298,7 @@
             selected_layout == 'square' ? squareText() : null
         });
         document.getElementById('geocoder').appendChild(geocoder.onAdd(map));
-      
+
         function main() {
             imagesLoaded += 1;
             var canvas = document.getElementById("canvas-total");
@@ -1285,7 +1316,7 @@
             img.src = src;
             return img;
         }
-    
+
         document.querySelector('.advance_tab_link').addEventListener('click', function () {
             if (document.querySelector('.accordion-item-new button').ariaExpanded == 'false') {
                 const triggerEl = document.querySelector('#v-pills-tab button[data-bs-target="#v-pills-advanced"]')
@@ -1422,7 +1453,7 @@
                     }
                     e.target.parentNode.parentNode.classList.add('select_border')
                 }
-            } 
+            }
         }
         document.querySelector('.advanced_tab_map_style_cont').addEventListener('click', map_layout)
         document.querySelector('.advanced_tab_map_color_cont').addEventListener('click', select_img)
@@ -1438,7 +1469,7 @@
         const maptext = document.querySelector('#map_text')
         selected_layout == 'polar' ? maptext.classList.add('map_over_width') : null
         function map_layout(e) {
-            selected_layout_index=e.target.ariaColIndex;
+            selected_layout_index = e.target.ariaColIndex;
             selected_layout = e.target.ariaCurrent;
             if (selected_layout == 'polar' || selected_layout == 'halo' || selected_layout == 'classic' || selected_layout == 'card' || selected_layout == 'square' || selected_layout == 'architect') {
                 document.querySelectorAll('.map_layout_cont').forEach((ele) => ele.classList.remove('select_border'))
@@ -1555,8 +1586,6 @@
             let width = map.getContainer().getBoundingClientRect().width
             let height = map.getContainer().getBoundingClientRect().height - 130
             let mapdem = width * height * 48 / 100
-            console.log(mapdem)
-            console.log(width * height)
             let over_city_text = document.querySelector('.map_over_text2 h2')
             let text_len = over_city_text.innerHTML.length
             let text_size = Math.sqrt(mapdem / text_len)
@@ -1566,7 +1595,6 @@
             } else {
                 over_city_text.style.fontSize = Math.round(text_size) + 'px'
             }
-            console.log('hello')
         }
         function getLocation() {
             if (navigator.geolocation) {
@@ -1576,7 +1604,6 @@
             }
         }
         function showPosition(position) {
-            console.log(position)
             map.setCenter({ lng: position.coords.longitude, lat: position.coords.latitude })
         }
         document.querySelector('.current_location_cont a').addEventListener('click', getLocation)
@@ -1755,7 +1782,7 @@
             document.querySelector('.over_element').setAttribute('style', `top:${e.clientY - 25.5}px;left:${e.clientX - 11}px`)
         }
         var coordinates;
-        function add_marker(event) { 
+        function add_marker(event) {
             coordinates = event.lngLat;
             document.body.appendChild(new_marker_icon)
             marker.setLngLat(coordinates).addTo(map);
@@ -1764,9 +1791,10 @@
                 document.querySelector(".mapboxgl-marker").classList.remove('display_none'),
                 document.querySelector('#icon_size_range').removeAttribute('disabled'),
                 document.querySelector('#icon_color_picker').removeAttribute('disabled')
-            ]}
-        document.querySelectorAll('#v-pills-tab button').forEach((ele) => {      
-            ele.addEventListener('click', function (e) {              
+            ]
+        }
+        document.querySelectorAll('#v-pills-tab button').forEach((ele) => {
+            ele.addEventListener('click', function (e) {
                 e.target.innerText == 'award_star' || e.target.innerText == 'award_star\nIcons' ? '' : [
                     document.querySelector('.over_element') != null ? [
                         document.body.removeEventListener('mousemove', myFunction),
@@ -1801,7 +1829,7 @@
         let icon_size;
         document.querySelector('#icon_size_range').addEventListener('input', function (event) {
             document.querySelector('.mapboxgl-marker i').style.fontSize = event.target.value + 'px'
-            icon_size = document.querySelector('.mapboxgl-marker i').style.fontSize;        
+            icon_size = document.querySelector('.mapboxgl-marker i').style.fontSize;
             icon_color != undefined ? [
                 new_marker_icon.setAttribute('style', `font-size:${icon_size}; color:${icon_color}`),
                 document.body.appendChild(new_marker_icon)
@@ -1815,13 +1843,14 @@
             document.querySelector('.mapboxgl-marker i').style.color = event.target.value;
             console.log(event.target.value)
             icon_color = event.target.value;
-            icon_size != undefined ? [ 
+            icon_size != undefined ? [
                 new_marker_icon.setAttribute('style', `font-size:${icon_size}; color:${icon_color}`),
                 document.body.appendChild(new_marker_icon)
             ] : [
                 new_marker_icon.setAttribute('style', `color:${icon_color}`),
                 document.body.appendChild(new_marker_icon)
-            ]})
+            ]
+        })
         document.querySelectorAll('.label_input_cont form input').forEach((ele) => {
             ele.addEventListener('input', function (event) {
                 console.log(event.target.checked)
@@ -1855,7 +1884,7 @@
         document.querySelector('.backdrop').onclick = function () {
             document.querySelector('.bottom-sheet-wrapper').classList.remove('show-modal');
         }
-        $('#cart_btn').click(()=>{
+        $('#cart_btn').click(() => {
             $('.map_print_btn').click()
             $('#generate-btn').click()
         })
