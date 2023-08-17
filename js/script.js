@@ -83,8 +83,7 @@ try {
 
 // Geolocation
   // Provide your Mapbox access token
-  var accessToken =
-  "pk.eyJ1Ijoia2FyYW5nMHlhbCIsImEiOiJja2VlaG42eDUwZnppMnlveXJtcjdvOGtvIn0.KoPWjGAkfBFhFBEuSUinlw";
+ 
 if ("geolocation" in navigator) {
   navigator.geolocation.getCurrentPosition(function (position) {
     "use strict";
@@ -98,7 +97,7 @@ if ("geolocation" in navigator) {
    
 
     // Call the function to get the location name
-    getLocationName(latitude, longitude, accessToken);
+    getLocationName(latitude, longitude);
     //
     // Errors
     //
@@ -110,12 +109,15 @@ if ("geolocation" in navigator) {
     center: [longitude, latitude],
     zoom: 10,
   });
+ 
   // Call the function to get the location name
-  getLocationName(latitude, longitude, accessToken);
+  getLocationName(latitude, longitude);
   });
 }
-function getLocationName(latitude, longitude, accessToken) {
+function getLocationName(latitude, longitude) {
   var url = `https://api.tiles.mapbox.com/geocoding/v5/mapbox.places-v1/${longitude},${latitude}.json`;
+  var accessToken =
+  "pk.eyJ1Ijoia2FyYW5nMHlhbCIsImEiOiJja2VlaG42eDUwZnppMnlveXJtcjdvOGtvIn0.KoPWjGAkfBFhFBEuSUinlw";
   var params = {
     access_token: accessToken,
   };

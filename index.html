@@ -314,19 +314,19 @@
                                         <p>These are some of the most popular places among customers and staff, and
                                             worth checking out if you want some inspiration.</p>
                                         <ul>
-                                            <li><a href="#" onclick="map.setCenter({lng:2.352222,lat:48.856613}),DrawText('PARIS','FRANCE',`48.8566° N, 2.3522° E`)
+                                            <li><a href="#" onclick="map.setCenter({lng:2.352222,lat:48.856613}),pap_cities_pos({lng:2.352222,lat:48.856613})
                                                 "> Paris,
                                                     France</a></li>
-                                            <li><a href="#" onclick="map.setCenter({lng:18.068581, lat:59.329323}),DrawText('STOCKHOLM','SWEDEN',`59.3293° N, 18.0686° E`)
+                                            <li><a href="#" onclick="map.setCenter({lng:18.068581, lat:59.329323}),pap_cities_pos({lng:18.068581, lat:59.329323})
                                             ">
                                                     Stockholm, Sweden</a></li>
-                                            <li><a href="#" onclick="map.setCenter({lng:13.404954,lat:52.520008}),DrawText('BERLIN','GERMANY',`52.5200° N, 13.4050° E`)
+                                            <li><a href="#" onclick="map.setCenter({lng:13.404954,lat:52.520008}),pap_cities_pos({lng:13.404954,lat:52.520008})
                                             ">Berlin,
                                                     Germany</a></li>
-                                            <li><a href="#" onclick="map.setCenter({lng:139.691706,lat:35.689488}),  DrawText('TOKYO','JAPAN',`35.6762° N, 139.6503° E`)
+                                            <li><a href="#" onclick="map.setCenter({lng:139.691706,lat:35.689488}),pap_cities_pos({lng:139.691706,lat:35.689488})
                                             "> Tokyo,
                                                     Japan</a></li>
-                                            <li><a href="#" onclick="map.setCenter({lng:-0.127758,lat:51.507351}),  DrawText('LONDON','UK',`51.5072° N, 0.1276° W`)
+                                            <li><a href="#" onclick="map.setCenter({lng:-0.127758,lat:51.507351}),pap_cities_pos({lng:-0.127758,lat:51.507351})
                                            "> London,
                                                     UK</a></li>
                                         </ul>
@@ -1161,7 +1161,8 @@
             reader.readAsDataURL(e.target.files[0]);
         }
         mapboxgl.accessToken = 'pk.eyJ1Ijoia2FyYW5nMHlhbCIsImEiOiJja2VlaG42eDUwZnppMnlveXJtcjdvOGtvIn0.KoPWjGAkfBFhFBEuSUinlw';
-        let style_ID = 'clia1ewf100wd01pn6l9vgqwd'
+        let style_ID = 'clia1ewf100wd01pn6l9vgqwd'        
+        // update responsive design in 10ms 
         setInterval(() => {
             let canvas_width =  $('#imageCanvas').width()
             let text_over_width = $('.map_over_text').width()            
@@ -1184,7 +1185,7 @@
                     map.getCanvas().style.maxHeight = 540 + 'px';
                     map.getCanvas().style.height = 540 + 'px';
                     selected_layout == 'square' ? squareText() : null
-                    selected_layout == 'classic'|| selected_layout == 'halo' ? $('.map_over_text').css('left',`${(canvas_width-text_over_width)/2.6}px`):null 
+                    selected_layout == 'classic'|| selected_layout == 'halo' ? $('.map_over_text').css('left',`${(canvas_width-text_over_width)/2.6}px`): selected_layout=='square'? $('.map_over_text').css('left',`15%`):$('.map_over_text').css('left',`unset`)
                 }
             } else if (window.innerWidth <= 576) {
                 
@@ -1208,7 +1209,7 @@
                     map.getCanvas().style.maxHeight = 445 + 'px';
                     map.getCanvas().style.height = 445 + 'px';
                     selected_layout == 'square' ? squareText() : null
-                    selected_layout == 'classic'|| selected_layout == 'halo' ? $('.map_over_text').css('left',`${(canvas_width-text_over_width)/2.8}px`):null 
+                    selected_layout == 'classic'|| selected_layout == 'halo' ? $('.map_over_text').css('left',`${(canvas_width-text_over_width)/2.8}px`):selected_layout=='square'? $('.map_over_text').css('left',`15%`):$('.map_over_text').css('left',`unset`)
                 }
             } else if (window.innerWidth > 1200) {
                 
@@ -1231,7 +1232,7 @@
                     map.getCanvas().style.maxHeight = 695 + 'px';
                     map.getCanvas().style.height = 695 + 'px';
                     selected_layout == 'square' ? squareText() : null
-                    selected_layout == 'classic'|| selected_layout == 'halo' ? $('.map_over_text').css('left',`${(canvas_width-text_over_width)/2.5}px`):null 
+                    selected_layout == 'classic'|| selected_layout == 'halo' ? $('.map_over_text').css('left',`${(canvas_width-text_over_width)/2.5}px`):selected_layout=='square'? $('.map_over_text').css('left',`15%`):$('.map_over_text').css('left',`unset`)
                 }
             }
         }, 10)
@@ -1283,9 +1284,7 @@
             return geoPoint;
         }
         marker.on('dragend', onDragEnd);
-        geocoder.on('result', e => {
-            console.log(e);
-            console.log(e.result.place_name.split(', ').splice(-1, 1)[0])
+        geocoder.on('result', e => {       
             document.querySelector('#map_text h2').innerHTML = e.result.text.toUpperCase()
             document.querySelectorAll('#map_text p')[0].innerHTML = e.result.place_name.split(', ').splice(-1, 1)[0].toUpperCase()
             document.querySelectorAll('#map_text p')[1].innerHTML = convertDMS(e.result.center[0], e.result.center[1])
@@ -1329,9 +1328,17 @@
         let mapstyle;
         let selected_layout = 'polar';
         let selected_layout_index = '1';
-        function select_img(e) {
-
+        function select_img(e) {           
             let maptext = document.querySelector('#map_text')
+                if(selected_layout == 'halo' || selected_layout == 'square') {
+                    if(mapstyle=='color_sky' ||  mapstyle=='blue_road' || mapstyle==undefined ){
+                        maptext.classList.add('text_color_dark');
+                        maptext.classList.remove('text_color_light')
+                    }else{
+                        maptext.classList.add('text_color_light');
+                        maptext.classList.remove('text_color_dark')
+                    }
+                }
             e.target.id == 'color_dark' ? canvas.classList.add('bg_color')
                 : [
                     canvas.classList.remove('bg_color')
@@ -1363,6 +1370,10 @@
                 if (e.target.id == 'color_sky') {
                     style_ID = 'clia1ewf100wd01pn6l9vgqwd'
                     map.setStyle("mapbox://styles/karang0yal/clia1ewf100wd01pn6l9vgqwd")
+                    if(selected_layout=='square' || selected_layout=='halo'){
+                        maptext.classList.remove('text_color_light')
+                        maptext.classList.add('text_color_dark')
+                    }
                 }
                 else if (e.target.id == 'color_golden') {
                     style_ID = 'clia2jwfo00jd01qy7e9p0bq6'
@@ -1388,6 +1399,7 @@
                     else {
                         maptext.classList.remove('bg_color', 'text_color_dark')
                     }
+                    
                 }
                 else if (e.target.id == 'red_road') {
                     style_ID = 'clia49xxz02s601qu4m6o7s4q'
@@ -1396,6 +1408,10 @@
                 else if (e.target.id == 'blue_road') {
                     style_ID = 'clia4e5zw02s701qu2isyfypv'
                     map.setStyle("mapbox://styles/karang0yal/clia4e5zw02s701qu2isyfypv")
+                    if(selected_layout=='square' || selected_layout=='halo'){
+                        maptext.classList.remove('text_color_light')
+                        maptext.classList.add('text_color_dark')
+                    }
                 }
                 else if (e.target.id == 'red_light') {
                     style_ID = 'clia4jg4002ui01pnekns7n5q'
@@ -1428,8 +1444,6 @@
             }
             if (e.target.parentNode.parentNode.className == 'advanced_tab_map_style_cont frame_cont') {
             }
-            console.log(e.target.parentNode.parentNode.className)
-            console.log(e.target.id)
 
             let imgdiv = e.target.parentNode.parentNode.children.length
             let imgdiv1 = e.target.parentNode.parentNode.parentNode.children.length
@@ -1453,7 +1467,9 @@
                 }
             }
         }
-        document.querySelector('.advanced_tab_map_style_cont').addEventListener('click', map_layout)
+        document.querySelectorAll('.advanced_tab_map_style_cont .map_layout_cont').forEach((ele)=>{
+            ele.addEventListener('click', map_layout)
+        })
         document.querySelector('.advanced_tab_map_color_cont').addEventListener('click', select_img)
         // rotate_map 
         document.querySelector('#customRange1').addEventListener('input', function (e) {
@@ -1474,7 +1490,6 @@
                 e.target.parentNode.classList.toggle('select_border')
             }
             select_img(e)
-            console.log(e.target.ariaCurrent)
             const canvas1 = canvas
             const w = canvas1.clientWidth
             const h = canvas1.clientHeight
@@ -1524,12 +1539,16 @@
                 mapstyle == 'color_dark' ? canvas.classList.add('bg_color') : canvas.classList.remove('bg_color')
                 maptext.classList.add('map_over_text_classic')
                 maptext.classList.remove('map_over_text_bg_color', 'map_over_text_border', 'display_none', 'bg_color')
+                // if(mapstyle != 'blue_road' ){
+                //     maptext.classList.remove("text_color_dark")
+                //     maptext.classList.add('text_color_light')
+                // }
             } else if (e.target.ariaCurrent == 'square') {
                 mapbox.style.maxHeight = h - (h * 5.66 / 100) + 'px'
                 mapbox.style.width = w - (w * 7.77 / 100) + 'px'
                 maptext.classList.remove('map_over_text_bg_color', 'map_over_text_border', 'display_none', 'bg_color')
                 maptext.classList.add('map_over_text2')
-                if (mapstyle != 'color_sky' && mapstyle != undefined) {
+                if (mapstyle != 'color_sky' && mapstyle != undefined && mapstyle != 'blue_road') {
                     maptext.classList.remove('text_color_dark')
                     maptext.classList.add('text_color_light')
                 } else {
@@ -1577,6 +1596,8 @@
                     maptext.classList.remove('text_color_light', 'bg_color')
                     maptext.classList.add('text_color_dark')
                 }
+            }else if(e.target.ariaCurrent == null){
+                selected_layout='polar'
             }
             map.resize()
         }
@@ -1603,11 +1624,16 @@
         }
         function showPosition(position) {
             map.setCenter({ lng: position.coords.longitude, lat: position.coords.latitude })
+            
+            getLocationName(position.coords.latitude,position.coords.longitude);
         }
         document.querySelector('.current_location_cont a').addEventListener('click', getLocation)
         map.on('load', function () {
             map.resize();
         });
+        function pap_cities_pos(data){            
+            getLocationName(data.lat, data.lng)
+        }
         const swatches = document.getElementById('swatches');
         const layer = document.getElementById('layer');
         const colors = [
