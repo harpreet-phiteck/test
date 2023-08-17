@@ -1164,9 +1164,7 @@
         let style_ID = 'clia1ewf100wd01pn6l9vgqwd'
         setInterval(() => {
             let canvas_width =  $('#imageCanvas').width()
-            let text_over_width = $('.map_over_text').width()
-            // selected_layout == 'classic'|| selected_layout == 'halo' ? $('.map_over_text').css('left',`${(canvas_width-text_over_width)/2.5}px`):null 
-            
+            let text_over_width = $('.map_over_text').width()            
             if (window.innerWidth <= 1200 && window.innerWidth > 576) {
                 if (selected_layout == 'polar') {
                     map.getContainer().style.width = 378 + 'px';
