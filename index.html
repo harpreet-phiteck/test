@@ -1250,17 +1250,18 @@
         const geocoder = new MapboxGeocoder({
             accessToken: mapboxgl.accessToken,
             mapboxgl: mapboxgl,
+            placeholder: "Search City, State, Country, Zip Code",
             marker: false,
             zoom: 14
         });
-
+      
         const marker = new mapboxgl.Marker({
             draggable: true
         })
 
         function onDragEnd() {
             const lngLat = marker.getLngLat();
-            coordinates.style.display = 'block';
+            // coordinates.style.display = 'block';
             coordinates.innerHTML = `Longitude: ${lngLat.lng}<br />Latitude: ${lngLat.lat}`;
         }
 
@@ -1290,7 +1291,7 @@
             document.querySelectorAll('#map_text p')[1].innerHTML = convertDMS(e.result.center[0], e.result.center[1])
             convertDMS(e.result.center[0], e.result.center[1])
             map.setCenter(e.result.center)
-            marker.setLngLat(e.result.center).addTo(map);
+            // marker.setLngLat(e.result.center).addTo(map);
             map.setZoom(14)
             selected_layout == 'square' ? squareText() : null
         });
@@ -1659,7 +1660,6 @@
             '#2F86A6',
             '#ffffff',
             '#000000'
-
         ];
         let land_value = '',
             land_color = '',
@@ -1780,19 +1780,22 @@
                 }
             })
         })
-        let marker_icon;
-        let new_marker_icon;
+        let marker_icon,
+         new_marker_icon,
+            element ;
         document.querySelectorAll('.icon_cont i').forEach((ele) => {
             ele.addEventListener('click', function (event) {
                 console.log(event.target)
                 document.querySelector('.over_element') != null ? [
                     document.querySelector('.over_element').parentNode.removeChild(document.querySelector('.over_element'))
                 ] : null
+                if($('.canvas_map_icon').length>0){
+                    $('.canvas_map_icon').remove()
+                }
                 marker_icon = event.target.outerHTML;
                 new_marker_icon = event.target.cloneNode(true)
-                new_marker_icon.classList.add('display_none');
+                new_marker_icon.classList.add('display_none','canvas_map_icon');
                 let element = event.target.cloneNode(true)
-                console.log(element)
                 element.classList.add('over_element')
                 document.body.appendChild(element)
                 document.body.classList.add('cursur_none')
@@ -1807,8 +1810,7 @@
         }
         var coordinates;
         function add_marker(event) {
-            coordinates = event.lngLat;
-            document.body.appendChild(new_marker_icon)
+            coordinates = event.lngLat;          
             marker.setLngLat(coordinates).addTo(map);
             document.querySelector(".mapboxgl-marker").innerHTML = marker_icon == undefined ? '' : marker_icon + '<button class="marker_remove_btn"onclick="remove_marker()">x</button>'
             event.originalEvent.target.nodeName == 'BUTTON' ? '' : [

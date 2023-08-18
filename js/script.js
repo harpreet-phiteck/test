@@ -685,7 +685,7 @@ function createPrintMap(
           new_marker_icon.style.length==2 ? new_marker_icon.setAttribute('style',`font-size: ${getfontsize-(icon_height*0.25)}px; color: ${getcolor}`):
           new_marker_icon.style.fontSize !='' ? new_marker_icon.setAttribute('style',`font-size: ${getfontsize-(icon_height*0.25)}px`):new_marker_icon.style.color !='' ? new_marker_icon.setAttribute('style',`color: ${getcolor}`):null
         ];
-      
+        document.body.appendChild(new_marker_icon)
         html2canvas(new_marker_icon, {backgroundColor: null, width:icon_width, height:icon_height}).then(
         (new_canvas) => {
           console.log(icon_width);
@@ -737,7 +737,8 @@ function createPrintMap(
 
             // document.body.appendChild(a);
             a.click();
-
+            $('body').remove(new_marker_icon);
+            $('.canvas_map_icon').remove()
             renderMap.remove();
             hidden.parentNode.removeChild(hidden);
             Object.defineProperty(window, "devicePixelRatio", {
