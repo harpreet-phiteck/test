@@ -1795,12 +1795,14 @@
                 marker_icon = event.target.outerHTML;
                 new_marker_icon = event.target.cloneNode(true)
                 new_marker_icon.classList.add('display_none','canvas_map_icon');
+                if(window.innerWidth > 991){
                 let element = event.target.cloneNode(true)
                 element.classList.add('over_element')
                 document.body.appendChild(element)
                 document.body.classList.add('cursur_none')
                 document.querySelector('.mapboxgl-canvas').classList.add('cursur_none')
-                document.body.addEventListener('mousemove', myFunction)
+                    document.body.addEventListener('mousemove', myFunction)
+                }
             })
         })
 
