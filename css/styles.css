@@ -145,6 +145,7 @@ body {
 .content_cont {
     width: 70%;
     background-color: #e6e6e6;
+    overflow: hidden;
 }
 
 .content_cont .map_poster_cont {

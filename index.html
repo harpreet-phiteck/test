@@ -1579,8 +1579,10 @@
                 mapstyle == 'color_dark' ? [
                     canvas.classList.add('bg_color'),
                     maptext.classList.add('bg_color', 'text_color_light')
-
-                ] : maptext.classList.add('text_color_dark')
+                ] :[
+                     maptext.classList.add('text_color_dark'),
+                     maptext.classList.remove('text_color_light')
+                    ]
                 maptext.classList.remove('map_over_text_border')
             }
             else if (e.target.ariaCurrent == 'card') {
@@ -1836,6 +1838,7 @@
         let freeze_cordi = true;
         map.on('click', add_marker);
         map.on('dragend', (e) => {
+                console.log(e)
             if (freeze_cordi) {
                 document.querySelectorAll('#map_text p')[1].innerHTML = convertDMS(map.getCenter().lng, map.getCenter().lat)
                 document.querySelectorAll(".label_input_cont form input")[2].value = convertDMS(map.getCenter().lng, map.getCenter().lat)
