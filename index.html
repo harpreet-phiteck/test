@@ -614,35 +614,35 @@
 
                                     <div class="icon_cont frame_cont">
                                         <div class="frame_type_img_cont">
-                                            <i class="fa-solid fa-heart"></i>
+                                            <i class="fa-solid fa-heart" type="button" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="'Click on Map'"></i>
                                         </div>
                                         <div class="frame_type_img_cont">
-                                            <i class="fa-solid fa-house-chimney"></i>
+                                            <i class="fa-solid fa-house-chimney"   type="button" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="'Click on Map'"></i>
 
                                         </div>
                                         <div class="frame_type_img_cont">
-                                            <i class="fa-solid fa-star"></i>
+                                            <i class="fa-solid fa-star"   type="button" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="'Click on Map'"></i>
                                         </div>
                                         <div class="frame_type_img_cont">
-                                            <i class="fa-solid fa-location-crosshairs"></i>
+                                            <i class="fa-solid fa-location-crosshairs"   type="button" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="'Click on Map'"></i>
                                         </div>
                                         <div class="frame_type_img_cont">
-                                            <i class="fa-solid fa-location-dot"></i>
+                                            <i class="fa-solid fa-location-dot"  type="button" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="'Click on Map'"></i>
                                         </div>
                                         <div class="frame_type_img_cont">
-                                            <i class="fa-solid fa-circle"></i>
+                                            <i class="fa-solid fa-circle"  type="button" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="'Click on Map'"></i>
                                         </div>
                                         <div class="frame_type_img_cont">
-                                            <i class="fa-solid fa-champagne-glasses"></i>
+                                            <i class="fa-solid fa-champagne-glasses"  type="button" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="'Click on Map'"></i>
                                         </div>
                                         <div class="frame_type_img_cont">
-                                            <i class="fa-solid fa-location-arrow"></i>
+                                            <i class="fa-solid fa-location-arrow"  type="button" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="'Click on Map'"></i>
                                         </div>
                                         <div class="frame_type_img_cont">
-                                            <i class="fa-solid fa-map-location"></i>
+                                            <i class="fa-solid fa-map-location"  type="button" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="'Click on Map'"></i>
                                         </div>
                                         <div class="frame_type_img_cont">
-                                            <i class="fa-solid fa-thumbtack"></i>
+                                            <i class="fa-solid fa-thumbtack"  type="button" data-bs-toggle="tooltip" data-bs-placement="top" data-bs-title="'Click on Map'"></i>
                                         </div>
                                     </div>
                                     <div class="icon_cont">
@@ -1468,13 +1468,15 @@
                 }
             }
         }
-        document.querySelectorAll('.advanced_tab_map_style_cont .map_layout_cont').forEach((ele)=>{
+        document.querySelectorAll('.advanced_tab_map_style_cont .map_layout_cont img').forEach((ele)=>{
             ele.addEventListener('click', map_layout)
         })
         document.querySelector('.advanced_tab_map_color_cont').addEventListener('click', select_img)
+        let map_rotation;
         // rotate_map 
         document.querySelector('#customRange1').addEventListener('input', function (e) {
             map.setBearing(e.target.value)
+            map_rotation =e.target.value
         })
         // rotate_map_reset
         document.querySelector('.map_rotate_reset').addEventListener('click', function () {
@@ -1634,9 +1636,12 @@
         map.on('load', function () {
             map.resize();
         });
+
+        // get papular_cities position in location tab 
         function pap_cities_pos(data){            
             getLocationName(data.lat, data.lng)
         }
+
         const swatches = document.getElementById('swatches');
         const layer = document.getElementById('layer');
         const colors = [
@@ -1882,6 +1887,7 @@
                 document.body.appendChild(new_marker_icon)
             ]
         })
+        // set manually city, state, country name 
         document.querySelectorAll('.label_input_cont form input').forEach((ele) => {
             ele.addEventListener('input', function (event) {
                 console.log(event.target.checked)
@@ -1923,7 +1929,11 @@
         map.on('load', function () {
             $('.content_cont_loader').hide()
             $('.canvas-mapboxgl-container').show()
-        })    
+        })
+        if(window.innerWidth < 992 ){
+            const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+            const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+        }
     </script>
 
 

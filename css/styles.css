@@ -389,7 +389,7 @@ canvas.mapboxgl-canvas {
 
 canvas.mapboxgl-canvas-new {
     margin-left: 0px !important;
-    margin-top: 1px !important;
+    margin-top: 0px !important;
     z-index: 4;
     /* object-fit: cover; */
     left: -12px;
@@ -818,6 +818,10 @@ canvas.mapboxgl-canvas-new {
     .content_cont {
         width: 100%;
         background-color: #e6e6e6;
+        height: 90vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .navbar_cont .nav1 {

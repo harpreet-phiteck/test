@@ -527,7 +527,9 @@ function createPrintMap(
       marker_Pos.top = childPos.top - parentPos.top + childPos.height / 2
       console.log(parentPos, childPos);
     }
- 
+    if(map_rotation){
+      map.setBearing(map_rotation)
+    }
     if (
       land_value == "active" ||
       road_value == "active" ||
