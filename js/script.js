@@ -667,11 +667,11 @@ function createPrintMap(
         var a = document.createElement("a");
         mapData.MapImg = base64; 
         // console.log(img);
-        a.href = base64,
-        a.target = "_blank";
-        a.download = "myImage.png";
+        // a.href = base64,
+        // a.target = "_blank";
+        // a.download = "myImage.png";
         // document.body.appendChild(a);
-        a.click();
+        // a.click();
       }
 
       if(marker_icon!=undefined) {
@@ -734,11 +734,11 @@ function createPrintMap(
             var a = document.createElement("a");
             mapData.MapImg = base64; 
             // console.log(img);
-     (a.href = base64), (a.target = "_blank");
-            a.download = "myImage.png";
+    //  (a.href = base64), (a.target = "_blank");
+    //         a.download = "myImage.png";
 
             // document.body.appendChild(a);
-            a.click();
+            // a.click();
             $('body').remove(new_marker_icon);
             $('.canvas_map_icon').remove()
             renderMap.remove();

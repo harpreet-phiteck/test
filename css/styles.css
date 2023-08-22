@@ -818,7 +818,7 @@ canvas.mapboxgl-canvas-new {
     .content_cont {
         width: 100%;
         background-color: #e6e6e6;
-        height: 90vh;
+        height: 88vh;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -885,6 +885,7 @@ canvas.mapboxgl-canvas-new {
     }
 
     canvas.mapboxgl-canvas {
+        width: 309px;
         max-height: 355px;
         margin-left: 13px;
         margin-top: 13px;
